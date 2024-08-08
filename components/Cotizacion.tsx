@@ -11,10 +11,10 @@ import {
   View,
 } from 'react-native';
 
-function App(): React.JSX.Element {
+function Cotizacion(): React.JSX.Element {
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView>
      
     </SafeAreaView>
   );
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default App;
+export default Cotizacion;
