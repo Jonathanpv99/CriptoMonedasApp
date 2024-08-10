@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5349E2',
     padding: 10,
     marginTop: 20,
+    borderRadius: 10,
   },
   txtCotizar: {
     color: '#fff',

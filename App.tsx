@@ -5,6 +5,8 @@ import {
   StyleSheet,
   View,
   Image,
+  ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
 import Header from './components/Header';
@@ -25,8 +27,11 @@ function App(): React.JSX.Element {
         const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptoMoneda}&tsyms=${moneda}`;
 
         const resp = await axios.get(url);
-        setCotizacion(resp.data.DISPLAY[criptoMoneda][moneda]);
-        setCotizando(false);
+           
+        setTimeout( () => {
+          setCotizacion(resp.data.DISPLAY[criptoMoneda][moneda]);
+          setCotizando(false);
+        }, 3000);
       }
 
       handleCotizarCriptomoneda();
@@ -34,31 +39,36 @@ function App(): React.JSX.Element {
   },[cotizando]);
  
   return (
-    <View>
-      <StatusBar barStyle="light-content" backgroundColor="#5E49E2" />
-      <Header/>
+      <ScrollView>
+        <StatusBar barStyle="light-content" backgroundColor="#5E49E2" />
+        <Header/>
 
-      <Image
-        style={styles.img}
-        source={ require('./assets/img/cryptomonedas.png')}
-      />
-
-      <View style={styles.contenido}>
-        <Formulario
-          moneda={moneda}
-          setMoneda={setMoneda}
-          criptoMoneda={criptoMoneda}
-          setCriptoMoneda={setCriptoMoneda}
-          setCotizando={setCotizando}
+        <Image
+          style={styles.img}
+          source={ require('./assets/img/cryptomonedas.png')}
         />
-        {Object.keys(cotizacion).length > 0 &&(
-          <Cotizacion
+
+        <View style={styles.contenido}>
+          <Formulario
+            moneda={moneda}
+            setMoneda={setMoneda}
+            criptoMoneda={criptoMoneda}
+            setCriptoMoneda={setCriptoMoneda}
+            setCotizando={setCotizando}
+          />
+
+        </View>
+          {cotizando ? (
+            <ActivityIndicator 
+              style={styles.spinner}
+              size={'large'}
+            />
+          ): (
+            <Cotizacion
             cotizacion={cotizacion}
           />
-        )}
-
-      </View>
-    </View>
+          )}
+      </ScrollView>
   );
 }
 
@@ -70,7 +80,10 @@ const styles = StyleSheet.create({
   },
   contenido: {
     marginHorizontal: '2.5%',
-  }
+  },
+  spinner: {
+    marginTop: 20,
+  },
 });
 
 export default App;
