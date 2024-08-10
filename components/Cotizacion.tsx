@@ -2,19 +2,18 @@
 import React from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 
-function Cotizacion(): React.JSX.Element {
+function Cotizacion({
+  cotizacion,
+}): React.JSX.Element {
 
   return (
     <SafeAreaView>
-     
+     <Text>cotizacion: {Object.keys(cotizacion).length > 0 ? cotizacion.PRICE : null}</Text>
     </SafeAreaView>
   );
 }

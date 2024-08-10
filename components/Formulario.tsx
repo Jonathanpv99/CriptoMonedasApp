@@ -4,14 +4,20 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableHighlight,
+  Alert,
 } from 'react-native';
 import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';
 
-function Formulario(): React.JSX.Element {
+function Formulario({
+  moneda,
+  setMoneda,
+  criptoMoneda,
+  setCriptoMoneda,
+  setCotizando,
+}): React.JSX.Element {
 
-  const [moneda, setMoneda] = useState(' ');
-  const [criptoMoneda, setCriptoMoneda] = useState(' ');
   const [criptoMonedaData, setCriptoMonedaData] = useState([]);
 
   useEffect( () => {
@@ -29,6 +35,18 @@ function Formulario(): React.JSX.Element {
   }
   const handleGetCriptoMoneda = (cripto) => {
     setCriptoMoneda(cripto);
+  }
+
+  const handleCotizar = () => {
+    if(moneda === ' ' || criptoMoneda === ' '){
+      Alert.alert(
+        '!Error...!',
+        'Ambos Campos Son Obligatorios'
+      );
+      return;
+    }
+
+    setCotizando(true);
   }
 
   return (
@@ -58,11 +76,18 @@ function Formulario(): React.JSX.Element {
              handleGetCriptoMoneda(valor)
          }}
       >
-        <Picker.Item label='-- Seleccione --' value=" "/>
+        <Picker.Item key={'007'} label='-- Seleccione --' value=" "/>
         { criptoMonedaData.map( (cripto) => (
-            <Picker.Item key={cripto?.CoinInfo?.id} label={cripto?.CoinInfo?.FullName} value={cripto?.CoinInfo?.Name}/>
+            <Picker.Item key={cripto.CoinInfo?.id} label={cripto.CoinInfo?.FullName} value={cripto.CoinInfo?.Name}/>
           ))}
       </Picker>
+
+      <TouchableHighlight 
+        style={styles.btnCotizar}
+        onPress={ () => handleCotizar()}
+      >
+        <Text style={styles.txtCotizar}>Cotizar</Text>
+      </TouchableHighlight>
     </View>
   );
 }
@@ -73,7 +98,19 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 22,
     marginVertical: 20,
-  }
+  },
+  btnCotizar: {
+    backgroundColor: '#5349E2',
+    padding: 10,
+    marginTop: 20,
+  },
+  txtCotizar: {
+    color: '#fff',
+    fontSize: 18,
+    fontFamily: 'Lato-Black', 
+    textTransform: 'uppercase',
+    textAlign: 'center',
+  },
 });
 
 export default Formulario;
