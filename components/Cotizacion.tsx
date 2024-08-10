@@ -35,18 +35,19 @@ function Cotizacion({
 
 const styles = StyleSheet.create({
   resultado:{
-    backgroundColor: '#5E49E2',
+    backgroundColor: '#99B4BF',
     padding: 20,
-    marginTop: 40,
+    marginVertical: 20,
   },
   texto: {
-    color: '#fff',
+    color: '#253C59',
     fontFamily: 'Lato-Regular',
     fontSize: 18,
     marginBottom: 10,
   },
   span: {
     fontFamily: 'Lato-Black',
+    color: '#BF8D30',
   },
   precio: {
     fontSize: 38,

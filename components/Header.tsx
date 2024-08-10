@@ -15,14 +15,13 @@ function Header(): React.JSX.Element {
 const styles = StyleSheet.create({
   header: {
     fontFamily: 'Lato-Black',
-    backgroundColor: '#5E49E2',
+    backgroundColor: '#2D4B73',
     paddingTop: 10,
     paddingBottom: 10,
     textAlign: 'center',
     textTransform: 'uppercase',
     fontSize: 20,
     color: '#fff',
-    marginBottom: 30,
   },
 });
 

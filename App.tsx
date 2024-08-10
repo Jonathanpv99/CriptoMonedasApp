@@ -39,13 +39,14 @@ function App(): React.JSX.Element {
   },[cotizando]);
  
   return (
+    <View style={styles.contenedor}>
       <ScrollView>
-        <StatusBar barStyle="light-content" backgroundColor="#5E49E2" />
+        <StatusBar barStyle="light-content" backgroundColor="#2D4B73" />
         <Header/>
 
         <Image
           style={styles.img}
-          source={ require('./assets/img/cryptomonedas.png')}
+          source={ require('./assets/img/crypto.png')}
         />
 
         <View style={styles.contenido}>
@@ -62,6 +63,7 @@ function App(): React.JSX.Element {
             <ActivityIndicator 
               style={styles.spinner}
               size={'large'}
+              color={'#253C59'}
             />
           ): (
             <Cotizacion
@@ -69,18 +71,21 @@ function App(): React.JSX.Element {
           />
           )}
       </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  contenedor: {
+    backgroundColor: '#5D7A8C',
+    flex: 1,
+  },
   img: {
     width: '100%',
-    height: 150,
-    marginHorizontal: '2.5%',
+    height: 200,
+    paddingVertical: 10,
   },
-  contenido: {
-    marginHorizontal: '2.5%',
-  },
+
   spinner: {
     marginTop: 20,
   },

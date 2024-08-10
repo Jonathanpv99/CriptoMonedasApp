@@ -50,10 +50,11 @@ function Formulario({
   }
 
   return (
-    <View>
+    <View style={styles.contenedor}>
       <Text style={styles.label}>Monedas</Text>
       <Picker
-         //dropdownIconColor='black'
+        style={styles.picker}
+         dropdownIconColor='white'
          dropdownIconRippleColor='gray'
          selectedValue={moneda}
          onValueChange={ (valor) => {
@@ -69,7 +70,8 @@ function Formulario({
       </Picker>
       <Text style={styles.label}>Criptomoneda</Text>
       <Picker
-         //dropdownIconColor='black'
+         style={styles.picker}
+         dropdownIconColor='white'
          dropdownIconRippleColor='gray'
          selectedValue={criptoMoneda}
          onValueChange={ (valor) => {
@@ -93,17 +95,26 @@ function Formulario({
 }
 
 const styles = StyleSheet.create({
+  contenedor: {
+    backgroundColor: '#2D4B73',
+    paddingHorizontal: 10,
+  },
   label: {
     fontFamily: 'Lato-Black',
     textTransform: 'uppercase',
     fontSize: 22,
     marginVertical: 20,
+    color: '#BF8D30',
+  },
+  picker: {
+    color: '#fff',
   },
   btnCotizar: {
-    backgroundColor: '#5349E2',
+    backgroundColor: '#BF8D30',
     padding: 10,
     marginTop: 20,
     borderRadius: 10,
+    marginBottom: 10,
   },
   txtCotizar: {
     color: '#fff',
